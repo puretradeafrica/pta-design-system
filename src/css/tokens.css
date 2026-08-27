@@ -1,0 +1,172 @@
+/* GENERATED FILE. Do not edit by hand.
+ * Source: src/tokens/*.ts
+ * Regenerate: node scripts/build-css.mjs
+ */
+
+:root {
+
+  /* Surface */
+  --pta-surface-page: #F7F8FA;
+  --pta-surface-card: #FFFFFF;
+  --pta-surface-inset: #F0F2F5;
+  --pta-surface-chrome: #043553;
+  --pta-surface-chrome-alt: #33343D;
+  --pta-surface-hover: #E8F6FD;
+  --pta-surface-selected: #E8F6FD;
+  --pta-surface-scrim: rgba(4,53,83,0.45);
+
+  /* Text */
+  --pta-text-primary: #001A34;
+  --pta-text-secondary: #5A626C;
+  --pta-text-muted: #7C8590;
+  --pta-text-faint: #A7A7A7;
+  --pta-text-on-chrome: #FFFFFF;
+  --pta-text-on-chrome-muted: rgba(255,255,255,0.72);
+  --pta-text-heading: #043553;
+
+  /* Border colour */
+  --pta-border-default: #E1E5EA;
+  --pta-border-subtle: #F0F2F5;
+  --pta-border-strong: #C7CCD3;
+  --pta-border-focus: #00ADEE;
+  --pta-border-on-chrome: rgba(255,255,255,0.18);
+
+  /* Interactive */
+  --pta-interactive-primary: #00ADEE;
+  --pta-interactive-primary-text: #FFFFFF;
+  --pta-interactive-primary-hover: #0098D1;
+  --pta-interactive-secondary: #043553;
+  --pta-interactive-secondary-text: #FFFFFF;
+  --pta-interactive-ghost-text: #043553;
+  --pta-interactive-ghost-hover: #E8F6FD;
+  --pta-interactive-link: #00ADEE;
+  --pta-interactive-disabled-bg: #F0F2F5;
+  --pta-interactive-disabled-text: #A7A7A7;
+  --pta-interactive-focus-ring: #00ADEE;
+
+  /* Status */
+  --pta-status-success-fg: #166534;
+  --pta-status-success-bg: #DCFCE7;
+  --pta-status-success-solid: #16A34A;
+  --pta-status-danger-fg: #991B1B;
+  --pta-status-danger-bg: #FEE2E2;
+  --pta-status-danger-solid: #DC2626;
+  --pta-status-warning-fg: #92400E;
+  --pta-status-warning-bg: #FEF3C7;
+  --pta-status-warning-solid: #F59E0B;
+  --pta-status-info-fg: #075985;
+  --pta-status-info-bg: #E0F2FE;
+  --pta-status-info-solid: #0EA5E9;
+  --pta-status-neutral-fg: #A7A7A7;
+  --pta-status-neutral-bg: #F0F2F5;
+  --pta-status-neutral-solid: #A7A7A7;
+
+  /* Data signal */
+  --pta-signal-positive: #166534;
+  --pta-signal-negative: #92400E;
+  --pta-signal-critical: #991B1B;
+  --pta-signal-neutral: #001A34;
+
+  /* Elevation */
+  --pta-shadow-none: none;
+  --pta-shadow-raised: 0 1px 2px rgba(4,53,83,0.06);
+  --pta-shadow-overlay: 0 4px 16px -4px rgba(4,53,83,0.16);
+  --pta-shadow-modal: 0 12px 40px -12px rgba(4,53,83,0.32);
+
+  /* Pipeline stage */
+  --pta-stage-new sales enquiry: #EAB308;
+  --pta-stage-waiting for approval: #F59E0B;
+  --pta-stage-ready to quote: #0EA5E9;
+  --pta-stage-quote submitted: #7C3AED;
+  --pta-stage-deal staging: #00ADEE;
+  --pta-stage-active deal: #16A34A;
+  --pta-stage-deal lost / not approved: #DC2626;
+  --pta-stage-deal on hold: #9F1239;
+
+  /* Font family */
+  --pta-font-display: 'Montserrat', 'Trebuchet MS', sans-serif;
+  --pta-font-body: Calibri, 'Carlito', 'Segoe UI', sans-serif;
+  --pta-font-mono: Consolas, 'Cascadia Mono', ui-monospace, monospace;
+  --pta-font-print-heading: Montserrat, 'Trebuchet MS', sans-serif;
+  --pta-font-print-body: Calibri, Carlito, sans-serif;
+
+  /* Font size */
+  --pta-text-size-micro: 9px;
+  --pta-text-size-meta: 11px;
+  --pta-text-size-caption: 12px;
+  --pta-text-size-body: 13px;
+  --pta-text-size-body-lg: 14px;
+  --pta-text-size-heading: 17px;
+  --pta-text-size-display: 22px;
+  --pta-text-size-display-lg: 28px;
+
+  /* Line height */
+  --pta-leading-tight: 1.2;
+  --pta-leading-snug: 1.35;
+  --pta-leading-normal: 1.5;
+  --pta-leading-relaxed: 1.65;
+
+  /* Font weight */
+  --pta-weight-regular: 400;
+  --pta-weight-medium: 500;
+  --pta-weight-bold: 700;
+
+  /* Space */
+  --pta-space-none: 0;
+  --pta-space-xxs: 2px;
+  --pta-space-xs: 4px;
+  --pta-space-sm: 8px;
+  --pta-space-md: 12px;
+  --pta-space-lg: 16px;
+  --pta-space-xl: 20px;
+  --pta-space-xxl: 24px;
+  --pta-space-xxxl: 32px;
+  --pta-space-huge: 40px;
+
+  /* Radius */
+  --pta-radius-none: 0;
+  --pta-radius-badge: 5px;
+  --pta-radius-button: 8px;
+  --pta-radius-card: 12px;
+  --pta-radius-pill: 999px;
+
+  /* Border width */
+  --pta-border-width-hair: 0.5px;
+  --pta-border-width-thin: 1px;
+  --pta-border-width-thick: 2px;
+  --pta-border-width-accent: 3px;
+
+  /* Control */
+  --pta-control-height-sm: 26px;
+  --pta-control-height: 30px;
+  --pta-control-height-lg: 38px;
+  --pta-control-min-target: 26px;
+  --pta-control-font-size: 13px;
+  --pta-control-padding-x: 10px;
+
+  /* Layout */
+  --pta-layout-sidebar-width: 200px;
+  --pta-layout-sidebar-collapsed-width: 56px;
+  --pta-layout-header-height: 52px;
+  --pta-layout-content-max-width: 1440px;
+  --pta-layout-page-scale: 1px;
+
+  /* Density */
+  --pta-density-compact-row-padding-y: 4px;
+  --pta-density-compact-cell-padding-x: 8px;
+  --pta-density-compact-font-size: 12px;
+  --pta-density-compact-row-height: 41px;
+  --pta-density-default-row-padding-y: 8px;
+  --pta-density-default-cell-padding-x: 12px;
+  --pta-density-default-font-size: 13px;
+  --pta-density-default-row-height: 52px;
+  --pta-density-relaxed-row-padding-y: 12px;
+  --pta-density-relaxed-cell-padding-x: 16px;
+  --pta-density-relaxed-font-size: 13px;
+  --pta-density-relaxed-row-height: 60px;
+}
+
+/* The apps pin a light theme: globals.css sets color-scheme: light because
+ * these are dense data tools read in offices, and a naive dark inversion put
+ * near-white text on white cards. A dark set can be added here later as a
+ * deliberate design pass, not as an inversion. */

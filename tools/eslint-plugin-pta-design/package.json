@@ -1,0 +1,8 @@
+{
+  "name": "eslint-plugin-pta-design",
+  "version": "1.0.0",
+  "description": "Enforces the PTA design system: no raw colour literals, no Layer 1 imports from app code.",
+  "main": "index.js",
+  "license": "UNLICENSED",
+  "peerDependencies": { "eslint": ">=9" }
+}

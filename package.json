@@ -1,0 +1,43 @@
+{
+  "name": "@pta/design",
+  "version": "1.0.0",
+  "description": "Pure Trade Africa design system: tokens, primitives and enforcement, shared across every PTA application.",
+  "license": "UNLICENSED",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts",
+    "./css": "./src/css/tokens.css",
+    "./eslint-plugin": "./tools/eslint-plugin-pta-design/index.js"
+  },
+  "files": [
+    "src",
+    "tools",
+    "ARCHITECTURE.md",
+    "CLAUDE.md",
+    "README.md"
+  ],
+  "scripts": {
+    "build:css": "node scripts/build-css.mjs",
+    "check:css": "node scripts/build-css.mjs --check",
+    "test": "node tools/eslint-plugin-pta-design/test/rules.test.cjs",
+    "typecheck": "tsc --noEmit",
+    "dev": "vite",
+    "build:demo": "vite build",
+    "verify": "npm run typecheck && npm run check:css && npx eslint . && npm test"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "@typescript-eslint/parser": "^8.68.0",
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^9.39.5",
+    "typescript": "^5.9.3",
+    "vite": "^5.4.21"
+  },
+  "dependencies": {
+    "react-dom": "^18.3.1"
+  }
+}

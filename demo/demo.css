@@ -1,0 +1,15 @@
+/* Only global resets belong here. Everything visual comes from tokens. */
+* { box-sizing: border-box; }
+html, body, #root { margin: 0; padding: 0; height: 100%; }
+body {
+  /* Pinned light, as the apps do: these are dense data tools and a naive dark
+     inversion put near-white text on white cards. */
+  color-scheme: light;
+  background: var(--pta-surface-page);
+  color: var(--pta-text-primary);
+  font-family: var(--pta-font-body);
+  font-size: var(--pta-text-size-body);
+  line-height: var(--pta-leading-normal);
+  -webkit-font-smoothing: antialiased;
+}
+input::placeholder { color: var(--pta-text-faint); }
