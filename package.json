@@ -5,12 +5,18 @@
   "license": "UNLICENSED",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./source": "./src/index.ts",
     "./css": "./src/css/tokens.css",
+    "./tokens.json": "./src/css/tokens.json",
     "./eslint-plugin": "./tools/eslint-plugin-pta-design/index.js"
   },
   "files": [
     "src",
+    "dist",
     "tools",
     "scripts",
     "docs",
@@ -26,7 +32,9 @@
     "dev": "vite",
     "build:demo": "vite build",
     "verify": "npm run typecheck && npm run check:css && npx eslint . && npm test",
-    "baseline": "node scripts/make-baseline.mjs"
+    "baseline": "node scripts/make-baseline.mjs",
+    "build": "node scripts/build-dist.mjs",
+    "prepare": "node scripts/build-dist.mjs"
   },
   "peerDependencies": {
     "react": "^18.3.1"
@@ -42,5 +50,7 @@
   },
   "dependencies": {
     "react-dom": "^18.3.1"
-  }
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts"
 }

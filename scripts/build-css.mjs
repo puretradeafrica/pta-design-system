@@ -18,11 +18,13 @@ import { writeFileSync, mkdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { brand } from "../src/tokens/brand.ts";
 import { semantic } from "../src/tokens/semantic.ts";
 import { scale } from "../src/tokens/scale.ts";
 
 const here = dirname(fileURLToPath(import.meta.url));
 const out = join(here, "..", "src", "css", "tokens.css");
+const jsonOut = join(here, "..", "src", "css", "tokens.json");
 
 const kebab = (s) => s.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
 const px = (v) => (typeof v === "number" && v !== 0 ? `${v}px` : String(v));
@@ -100,6 +102,18 @@ if (process.argv.includes("--check")) {
 } else {
   mkdirSync(dirname(out), { recursive: true });
   writeFileSync(out, next, "utf8");
+
+  // Also emitted as JSON, for consumers that cannot import TypeScript at all.
+  // Document generation is the one that matters: the pta-branding skill builds
+  // docx, xlsx, pptx and PDF from Python, and needs the same brand values the
+  // screens use or print and screen drift apart again.
+  const json = {
+    $comment: "GENERATED from src/tokens/*.ts. Do not edit. Regenerate: node scripts/build-css.mjs",
+    brand, semantic, scale,
+  };
+  writeFileSync(jsonOut, JSON.stringify(json, null, 2) + "\n", "utf8");
+
   console.log(`wrote ${out}`);
   console.log(`${count} custom properties emitted`);
+  console.log(`wrote ${jsonOut}`);
 }

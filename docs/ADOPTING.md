@@ -73,17 +73,40 @@ for the full list. Every token is exposed, colour and dimension alike.
 The two modes mix freely. A class-based app can still import `<DataTable>` and get
 the table for free, because the components carry their own inline styles.
 
+### Mode C: JSON, for anything that cannot import TypeScript
+
+Document generation. The `pta-branding` skill builds docx, xlsx, pptx and PDF from
+Python, and must use the same values the screens use or print and screen drift
+apart again.
+
+```python
+import json
+tokens = json.load(open("node_modules/@pta/design/src/css/tokens.json"))
+navy  = tokens["brand"]["identity"]["navy"]        # 043553
+green = tokens["brand"]["status"]["success"]       # 16A34A
+body  = tokens["brand"]["type"]["printBody"]       # Calibri, Carlito, sans-serif
+```
+
+Generated alongside `tokens.css` from the same source, so it cannot drift.
+
 ### Framework notes
 
-The package ships TypeScript source rather than a build, so bundlers need to be
-told to process it.
+The package ships both compiled JavaScript (`dist/`) and the TypeScript source.
+`import ... from "@pta/design"` resolves to the build, which works everywhere
+including plain Node. Import `@pta/design/source` if you specifically want the TS.
+
+The build runs automatically on install via the `prepare` script, so `dist/` is
+never committed and can never go stale.
+
+Next.js needs nothing extra now that a build is shipped. If you switch to the
+source entry point, add:
 
 ```ts
 // next.config.ts
 export default { transpilePackages: ["@pta/design"] };
 ```
 
-Vite handles it without configuration.
+Vite handles either without configuration.
 
 ---
 
