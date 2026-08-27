@@ -12,6 +12,8 @@
   "files": [
     "src",
     "tools",
+    "scripts",
+    "docs",
     "ARCHITECTURE.md",
     "CLAUDE.md",
     "README.md"
@@ -23,7 +25,8 @@
     "typecheck": "tsc --noEmit",
     "dev": "vite",
     "build:demo": "vite build",
-    "verify": "npm run typecheck && npm run check:css && npx eslint . && npm test"
+    "verify": "npm run typecheck && npm run check:css && npx eslint . && npm test",
+    "baseline": "node scripts/make-baseline.mjs"
   },
   "peerDependencies": {
     "react": "^18.3.1"

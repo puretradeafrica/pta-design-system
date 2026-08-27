@@ -3,8 +3,9 @@
 Tokens, primitives and enforcement, shared across every Pure Trade Africa
 application.
 
-Read [CLAUDE.md](./CLAUDE.md) before building a screen. Read
-[ARCHITECTURE.md](./ARCHITECTURE.md) for why it is built this way and what has
+Read [CLAUDE.md](./CLAUDE.md) before building a screen.
+Read [docs/ADOPTING.md](./docs/ADOPTING.md) before wiring it into an existing app.
+Read [ARCHITECTURE.md](./ARCHITECTURE.md) for why it is built this way and what has
 been decided.
 
 ---
@@ -85,6 +86,8 @@ The baseline may only ever shrink.
 | `npm run typecheck` | `tsc --noEmit` over tokens, components and demo |
 | `npm test` | The lint rules behave as specified |
 | `npx eslint .` | The design system lints itself with its own rule |
+| `npm run baseline <src-dir> [out.json]` | Inventory an app's existing violations before turning the rule on |
+| `npm run verify` | All of the above in one go |
 
 ---
 
