@@ -1,6 +1,6 @@
 {
   "name": "@pta/design",
-  "version": "1.0.0",
+  "version": "1.2.1",
   "description": "Pure Trade Africa design system: tokens, primitives and enforcement, shared across every PTA application.",
   "license": "UNLICENSED",
   "type": "module",

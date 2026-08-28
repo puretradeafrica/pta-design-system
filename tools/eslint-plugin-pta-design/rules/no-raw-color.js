@@ -170,6 +170,15 @@ module.exports = {
     const opts = context.options[0] ?? {};
     const filename = context.filename ?? context.getFilename();
     const norm = filename.split(path.sep).join("/");
+    /**
+     * The baseline key is cwd-relative, because that is the form
+     * `scripts/make-baseline.mjs` writes ("src/PredictModal.jsx:100:#043553").
+     * ESLint hands the rule an absolute path, so relativise it before looking a
+     * violation up, or nothing in the baseline ever matches and every baselined
+     * hit still fails the adopting app's build. A filename that is already
+     * relative resolves against cwd first, so this holds either way.
+     */
+    const relNorm = path.relative(process.cwd(), filename).split(path.sep).join("/");
 
     const allow = [...DEFAULT_ALLOW, ...(opts.allow ?? [])]
       .map((a) => a.split(path.sep).join("/"));
@@ -183,7 +192,7 @@ module.exports = {
 
     function key(node, color) {
       const loc = node.loc.start;
-      return `${norm}:${loc.line}:${color}`;
+      return `${relNorm}:${loc.line}:${color}`;
     }
 
     function reportColor(node, raw) {
