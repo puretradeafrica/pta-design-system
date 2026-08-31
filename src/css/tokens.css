@@ -74,14 +74,14 @@
   --pta-shadow-modal: 0 12px 40px -12px rgba(4,53,83,0.32);
 
   /* Pipeline stage */
-  --pta-stage-new sales enquiry: #EAB308;
-  --pta-stage-waiting for approval: #F59E0B;
-  --pta-stage-ready to quote: #0EA5E9;
-  --pta-stage-quote submitted: #7C3AED;
-  --pta-stage-deal staging: #00ADEE;
-  --pta-stage-active deal: #16A34A;
-  --pta-stage-deal lost / not approved: #DC2626;
-  --pta-stage-deal on hold: #9F1239;
+  --pta-stage-new-sales-enquiry: #EAB308;
+  --pta-stage-waiting-for-approval: #F59E0B;
+  --pta-stage-ready-to-quote: #0EA5E9;
+  --pta-stage-quote-submitted: #7C3AED;
+  --pta-stage-deal-staging: #00ADEE;
+  --pta-stage-active-deal: #16A34A;
+  --pta-stage-deal-lost-not-approved: #DC2626;
+  --pta-stage-deal-on-hold: #9F1239;
 
   /* Font family */
   --pta-font-display: 'Montserrat', 'Trebuchet MS', sans-serif;

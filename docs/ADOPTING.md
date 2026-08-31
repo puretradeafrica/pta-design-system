@@ -7,7 +7,7 @@ For anyone pointing a PTA application at `@pta/design` for the first time.
 ## 1. Install
 
 ```bash
-npm install "github:Gareth-Loudon/pta-design-system#v1.2.0"
+npm install "github:Gareth-Loudon/pta-design-system#v1.2.1"
 ```
 
 Pin the tag, never a branch. A branch reference means a push to the design system

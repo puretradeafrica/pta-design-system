@@ -26,7 +26,16 @@ const here = dirname(fileURLToPath(import.meta.url));
 const out = join(here, "..", "src", "css", "tokens.css");
 const jsonOut = join(here, "..", "src", "css", "tokens.json");
 
-const kebab = (s) => s.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
+// Token keys can be camelCase identifiers or display strings ("Deal Lost / Not
+// Approved"). Both must become a valid CSS custom property name: split camelCase,
+// then collapse anything that is not [a-z0-9] into single hyphens. Spaces or
+// slashes in a property name make the whole file unparseable for consumers.
+const kebab = (s) =>
+  s
+    .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 const px = (v) => (typeof v === "number" && v !== 0 ? `${v}px` : String(v));
 
 const lines = [];
@@ -84,6 +93,18 @@ emit("");
 
 const next = lines.join("\n");
 const count = lines.filter((l) => l.trim().startsWith("--pta-")).length;
+
+// Every emitted custom property name must be a valid, prefixed identifier.
+// A single bad name (a space, a slash) makes consumers reject the entire file,
+// so fail loudly here in both build and --check modes.
+const badNames = lines
+  .map((l) => l.match(/^\s*(--\S[^:]*):/)?.[1])
+  .filter((name) => name && !/^--pta-[a-z0-9-]+$/.test(name));
+if (badNames.length > 0) {
+  console.error("Invalid custom property names (must match --pta-[a-z0-9-]+):");
+  for (const name of badNames) console.error(`  ${name}`);
+  process.exit(1);
+}
 
 if (process.argv.includes("--check")) {
   // CI guard: a token change that forgets to regenerate the CSS fails the build.
