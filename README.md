@@ -29,7 +29,7 @@ Then open **http://localhost:5273**. Two pages, switched from the sidebar:
 
 ```json
 "dependencies": {
-  "@pta/design": "github:Gareth-Loudon/pta-design-system#v1.2.1"
+  "@pta/design": "github:Gareth-Loudon/pta-design-system#v1.2.2"
 }
 ```
 

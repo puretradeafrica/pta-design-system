@@ -115,6 +115,8 @@ if (process.argv.includes("--check")) {
   } catch {
     /* a missing file counts as stale */
   }
+  // Normalize CRLF so a Windows checkout (core.autocrlf) does not read as stale.
+  if (current !== null) current = current.replace(/\r\n/g, "\n");
   if (current !== next) {
     console.error("tokens.css is stale. Run: node scripts/build-css.mjs");
     process.exit(1);
