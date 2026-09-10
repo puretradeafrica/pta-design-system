@@ -15,6 +15,7 @@ import {
   stageColor,
   type Column, type DealState, type TableGroup,
 } from "../src/index.ts";
+import type { KpiDensity } from "../src/components/index.ts";
 import { semantic } from "../src/tokens/semantic.ts";
 import { scale } from "../src/tokens/scale.ts";
 
@@ -298,6 +299,18 @@ function Row({ label, children }: { label: string; children: React.ReactNode }) 
   );
 }
 
+const KPI_DENSITIES: KpiDensity[] = ["compact", "default", "relaxed"];
+
+const densityCaption: React.CSSProperties = {
+  fontFamily: scale.font.body,
+  fontSize: scale.fontSize.meta,
+  fontWeight: scale.fontWeight.bold,
+  textTransform: "uppercase",
+  letterSpacing: "0.04em",
+  color: semantic.text.muted,
+  padding: `${scale.space.md}px ${scale.space.xl}px ${scale.space.xs}px`,
+};
+
 function KitchenSink({ onToast }: { onToast: (m: string) => void }) {
   return (
     <>
@@ -310,6 +323,23 @@ function KitchenSink({ onToast }: { onToast: (m: string) => void }) {
         { label: "Profit After Finance", value: "$76,153", note: "2.9%", tone: "positive" },
         { label: "Total Volume", value: "2,508", note: "MT" },
       ]} />
+
+      {/* The three densities, so the difference is a thing you can see rather
+          than a number in a prop table. Same items in each. */}
+      {KPI_DENSITIES.map((d) => (
+        <div key={d}>
+          <div style={densityCaption}>{`density: ${d}`}</div>
+          <KpiStrip
+            density={d}
+            items={[
+              { label: "On the water", value: "24" },
+              { label: "In discharge", value: "81" },
+              { label: "Pre-alerts due", value: "33", tone: "negative" },
+              { label: "Arriving in 7 days", value: "7" },
+            ]}
+          />
+        </div>
+      ))}
       <div style={{ padding: scale.space.xl, maxWidth: 1100 }}>
         <Card>
           <Row label="Button variants">

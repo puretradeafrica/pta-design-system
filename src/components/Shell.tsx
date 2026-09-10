@@ -284,7 +284,61 @@ export interface Kpi {
   tone?: "default" | "positive" | "negative" | "critical";
 }
 
-export function KpiStrip({ items }: { items: Kpi[] }) {
+/**
+ * How much room the strip takes.
+ *
+ * `default` is unchanged from v1.2.2, so no existing board moves.
+ *
+ * `compact` exists because a strip of four counts is not always the most
+ * important thing on the page. On a board whose job is the table underneath
+ * it, `default` spends 80px of vertical room to state four numbers, and 33px
+ * of that is its own padding. Shipments View asked for a smaller one and the
+ * only local way to get it was to override the component, which is the drift
+ * this package exists to stop. So the knob belongs here.
+ *
+ * Every level is built from `space` and `fontSize` steps, so the figure stays
+ * on the type scale rather than becoming an in-between size.
+ */
+const KPI_DENSITY = {
+  compact: {
+    padY: scale.space.sm,
+    padX: scale.space.lg,
+    labelGap: scale.space.xxs,
+    figure: scale.fontSize.heading,
+    minColumn: 120,
+  },
+  default: {
+    padY: scale.space.lg,
+    padX: scale.space.xl,
+    labelGap: scale.space.xs,
+    figure: scale.fontSize.display,
+    minColumn: 150,
+  },
+  relaxed: {
+    padY: scale.space.xl,
+    padX: scale.space.xxl,
+    labelGap: scale.space.xs,
+    figure: scale.fontSize.displayLg,
+    minColumn: 150,
+  },
+} as const;
+
+export type KpiDensity = keyof typeof KPI_DENSITY;
+
+export function KpiStrip({
+  items,
+  density = "default",
+}: {
+  items: Kpi[];
+  /**
+   * `compact` for a strip that sits above the content it summarises;
+   * `default` for a page's headline figures; `relaxed` for a dashboard whose
+   * figures ARE the page.
+   */
+  density?: KpiDensity;
+}) {
+  const d = KPI_DENSITY[density];
+
   const toneColor = (t: Kpi["tone"]) =>
     t === "positive" ? semantic.dataSignal.positive
       : t === "negative" ? semantic.dataSignal.negative
@@ -295,11 +349,11 @@ export function KpiStrip({ items }: { items: Kpi[] }) {
     <div
       style={{
         display: "grid",
-        gridTemplateColumns: `repeat(auto-fit, minmax(150px, 1fr))`,
+        gridTemplateColumns: `repeat(auto-fit, minmax(${d.minColumn}px, 1fr))`,
         gap: scale.space.xs,
         background: semantic.surface.card,
         borderBottom: `${scale.border.thin}px solid ${semantic.border.default}`,
-        padding: `${scale.space.lg}px ${scale.space.xl}px`,
+        padding: `${d.padY}px ${d.padX}px`,
       }}
     >
       {items.map((k) => (
@@ -308,8 +362,13 @@ export function KpiStrip({ items }: { items: Kpi[] }) {
             style={{
               fontFamily: scale.font.body,
               fontSize: scale.fontSize.meta,
+              // Pinned, like every other line box in this package. Left at
+              // `normal` the label's height came from whichever face resolved,
+              // so the strip was 2px taller on a machine without Calibri and
+              // no density level could promise a height.
+              lineHeight: scale.lineHeight.snug,
               color: semantic.text.muted,
-              marginBottom: scale.space.xs,
+              marginBottom: d.labelGap,
               whiteSpace: "nowrap",
               overflow: "hidden",
               textOverflow: "ellipsis",
@@ -320,7 +379,7 @@ export function KpiStrip({ items }: { items: Kpi[] }) {
           <div
             style={{
               fontFamily: scale.font.body,
-              fontSize: scale.fontSize.display,
+              fontSize: d.figure,
               fontWeight: scale.fontWeight.bold,
               lineHeight: scale.lineHeight.tight,
               fontVariantNumeric: "tabular-nums lining-nums",
@@ -334,8 +393,9 @@ export function KpiStrip({ items }: { items: Kpi[] }) {
               style={{
                 fontFamily: scale.font.body,
                 fontSize: scale.fontSize.meta,
+                lineHeight: scale.lineHeight.snug,
                 color: semantic.text.muted,
-                marginTop: 2,
+                marginTop: scale.space.xxs,
               }}
             >
               {k.note}

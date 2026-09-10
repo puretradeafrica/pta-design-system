@@ -16,7 +16,7 @@ export { DataTable, CellStack, Empty, Num } from "./DataTable.tsx";
 export type { Column, TableGroup, DataTableProps, Align, Density } from "./DataTable.tsx";
 
 export { PageHeader, Wordmark, Sidebar, Card, Toolbar, KpiStrip } from "./Shell.tsx";
-export type { PageHeaderProps, NavItem, SidebarProps, Kpi } from "./Shell.tsx";
+export type { PageHeaderProps, NavItem, SidebarProps, Kpi, KpiDensity } from "./Shell.tsx";
 
 export { TextInput, Field, Modal, EmptyState, Toast } from "./Feedback.tsx";
 export type { TextInputProps, FieldProps, ModalProps, ToastTone } from "./Feedback.tsx";
